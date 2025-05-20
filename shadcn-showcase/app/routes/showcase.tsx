@@ -186,10 +186,10 @@ export default function ShadcnShowcaseApp() {
                                             <CardHeader className="flex items-center space-x-2">
                                                 <Icon className="h-5 w-5 text-slate-500 dark:text-slate-400" />
                                                 <CardTitle>{f.title}</CardTitle>
+                                                <CardDescription>
+                                                    {f.desc}
+                                                </CardDescription>
                                             </CardHeader>
-                                            <CardDescription>
-                                                {f.desc}
-                                            </CardDescription>
                                             <CardContent>
                                                 <Button
                                                     variant="outline"
