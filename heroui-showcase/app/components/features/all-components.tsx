@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import {
     Accordion,
     AccordionItem,
+    addToast,
     CardBody,
     CardFooter,
     CardHeader,
@@ -23,12 +24,28 @@ import {
     DateRangePicker,
     Divider,
     Image,
+    InputOtp,
+    Kbd,
     Link,
+    Listbox,
+    ListboxItem,
+    Navbar,
+    NavbarBrand,
+    NavbarContent,
+    NavbarItem,
+    NumberInput,
+    RangeCalendar,
+    Snippet,
+    Spacer,
+    Spinner,
     TableBody,
     TableCell,
     TableColumn,
     TableHeader,
     TableRow,
+    TimeInput,
+    ToastProvider,
+    User,
 } from "@heroui/react";
 import { Alert } from "@heroui/react";
 import { Avatar } from "@heroui/react";
@@ -38,7 +55,6 @@ import { Button } from "@heroui/react";
 import { Calendar } from "@heroui/react";
 import { Card } from "@heroui/react";
 import { Checkbox } from "@heroui/react";
-import { Drawer, DrawerContent, DrawerHeader } from "@heroui/react";
 import {
     Dropdown,
     DropdownTrigger,
@@ -46,7 +62,6 @@ import {
     DropdownItem,
 } from "@heroui/react";
 import { Form, Input, Textarea } from "@heroui/react";
-import { InputOtp } from "@heroui/react";
 import { Modal, ModalContent, ModalHeader } from "@heroui/react";
 import { Pagination } from "@heroui/react";
 import { Popover, PopoverTrigger, PopoverContent } from "@heroui/react";
@@ -60,10 +75,10 @@ import { Switch } from "@heroui/react";
 import { Table } from "@heroui/react";
 import { Tabs, Tab } from "@heroui/react";
 import { Tooltip } from "@heroui/react";
-import { Toaster, toast } from "sonner";
 import AutoCompleteUsage from "./autocomplete";
-import { CalendarDate } from "@internationalized/date";
+import { CalendarDate, getLocalTimeZone, Time, today } from "@internationalized/date";
 import DrawerComp from "./drawer";
+import ModalImpl from "./modal";
 
 export default function AllHeroUIComponentsDemo() {
     const [date, setDate] = useState<Date | undefined>(new Date());
@@ -91,7 +106,47 @@ export default function AllHeroUIComponentsDemo() {
 
     return (
         <div className="max-w-5xl mx-auto py-10 flex flex-col gap-16">
-            <Toaster richColors />
+            <Navbar>
+                <NavbarBrand>
+                    <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
+                        <path
+                            clipRule="evenodd"
+                            d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
+                            fill="currentColor"
+                            fillRule="evenodd"
+                        />
+                    </svg>
+                    <p className="font-bold text-inherit">ACME</p>
+                </NavbarBrand>
+                <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                    <NavbarItem>
+                        <Link color="foreground" href="#">
+                            Features
+                        </Link>
+                    </NavbarItem>
+                    <NavbarItem isActive>
+                        <Link aria-current="page" href="#">
+                            Customers
+                        </Link>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Link color="foreground" href="#">
+                            Integrations
+                        </Link>
+                    </NavbarItem>
+                </NavbarContent>
+                <NavbarContent justify="end">
+                    <NavbarItem className="hidden lg:flex">
+                        <Link href="#">Login</Link>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Button as={Link} color="primary" href="#" variant="flat">
+                            Sign Up
+                        </Button>
+                    </NavbarItem>
+                </NavbarContent>
+            </Navbar>
+            <ToastProvider />
             {/* Accordion */}
             <section>
                 <h2 className="font-semibold text-xl mb-4">Accordion</h2>
@@ -188,7 +243,6 @@ export default function AllHeroUIComponentsDemo() {
                 <div className="flex gap-4 items-center">
                     <Button
                         radius="full"
-                        onClick={() => toast.success("success")}
                     >
                         Full
                     </Button>
@@ -284,7 +338,7 @@ export default function AllHeroUIComponentsDemo() {
                     <DateInput
                         className="max-w-sm"
                         label={"Birth date"}
-                        placeholderValue={new CalendarDate(1995, 11, 6)}
+                        placeholderValue={new CalendarDate(1995, 11, 6) as any}
                     />
                 </div>
             </section>
@@ -346,27 +400,102 @@ export default function AllHeroUIComponentsDemo() {
                 <Input type="email" placeholder="you@example.com" />
                 <label>Message</label>
                 <Textarea placeholder="Your message…" />
-                <Button type="submit">Submit</Button>
+                <div className="flex gap-2">
+                    <Button type="submit" color="primary">Submit</Button>
+                    <Button type="reset" variant="flat">Reset</Button>
+                </div>
             </Form>
+            {/* Image */}
+            <section>
+                <Image
+                    alt="HeroUI hero Image"
+                    src="https://heroui.com/images/hero-card-complete.jpeg"
+                    width={300}
+                />
+            </section>
+            {/* Input */}
+            <section>
+                <Input
+                    isDisabled
+                    className="max-w-xs"
+                    defaultValue="junior@heroui.com"
+                    label="Email"
+                    type="email"
+                />
+            </section>
+            {/* Input OTP */}
+            <section>
+                <div className="flex flex-col items-start gap-2">
+                    <InputOtp length={4} />
+                </div>
+            </section>
+            {/* KBG */}
+            <section>
+                <div className="flex gap-4">
+                    <Kbd keys={["command"]}>K</Kbd>
+                    <Kbd keys={["command", "shift"]}>N</Kbd>
+                    <Kbd keys={["option", "command"]}>P</Kbd>
+                </div>
+            </section>
+            {/* Link */}
+            <section>
+                <div className="flex gap-4">
+                    <Link href="#">Default Link</Link>
+                </div>
+            </section>
+            {/* Listbox */}
+            <section>
+                <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+                    <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
+                        <ListboxItem key="new">New file</ListboxItem>
+                        <ListboxItem key="copy">Copy link</ListboxItem>
+                        <ListboxItem key="edit">Edit file</ListboxItem>
+                        <ListboxItem key="delete" className="text-danger" color="danger">
+                            Delete file
+                        </ListboxItem>
+                    </Listbox>
+                </div>
+            </section>
             {/* Modal */}
-            <Modal>
-                <Button variant="bordered">Open modal</Button>
-                <ModalContent>
-                    <ModalHeader>
-                        <h2>Modal</h2>
-                    </ModalHeader>
-                    <div className="p-4">Modal content…</div>
-                </ModalContent>
-            </Modal>
+            <ModalImpl />
+            {/* NumberInput */}
+            <section>
+                <NumberInput className="max-w-xs" placeholder="Enter the amount" />
+            </section>
             {/* Pagination */}
             <Pagination total={10} initialPage={2} />
+            {/* Popover */}
+            <section>
+                <Popover placement="right">
+                    <PopoverTrigger>
+                        <Button>Open Popover</Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <div className="px-1 py-2">
+                            <div className="text-small font-bold">Popover Content</div>
+                            <div className="text-tiny">This is the popover content</div>
+                        </div>
+                    </PopoverContent>
+                </Popover>
+            </section>
             {/* Progress */}
-            <Progress aria-label="loading…" value={60} className="max-w-sm" />
+            <div className="flex flex-col gap-6 w-full max-w-md">
+                <Progress aria-label="Loading..." size="sm" value={30} />
+                <Progress aria-label="Loading..." size="md" value={40} />
+                <Progress aria-label="Loading..." size="lg" value={50} />
+            </div>
             {/* RadioGroup */}
-            <RadioGroup defaultValue="a" orientation="horizontal">
-                <Radio value="a">A</Radio>
-                <Radio value="b">B</Radio>
+            <RadioGroup label="Select your favorite city">
+                <Radio value="buenos-aires">Buenos Aires</Radio>
+                <Radio value="sydney">Sydney</Radio>
+                <Radio value="san-francisco">San Francisco</Radio>
+                <Radio value="london">London</Radio>
+                <Radio value="tokyo">Tokyo</Radio>
             </RadioGroup>
+            {/* RangeCalendar */}
+            <div className="flex gap-x-4">
+                <RangeCalendar aria-label="Date (No Selection)" />
+            </div>
             {/* ScrollShadow */}
             <ScrollShadow className="h-32 max-w-sm border rounded-lg p-3 space-y-1">
                 {Array.from({ length: 20 }).map((_, i) => (
@@ -383,17 +512,57 @@ export default function AllHeroUIComponentsDemo() {
                 <SelectItem key="banana">Banana</SelectItem>
             </Select>
             {/* Skeleton */}
-            <Skeleton className="w-48 h-8 rounded-lg" />
+            <Card className="w-[200px] space-y-5 p-4" radius="lg">
+                <Skeleton className="rounded-lg">
+                    <div className="h-24 rounded-lg bg-default-300" />
+                </Skeleton>
+                <div className="space-y-3">
+                    <Skeleton className="w-3/5 rounded-lg">
+                        <div className="h-3 w-3/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+                    <Skeleton className="w-4/5 rounded-lg">
+                        <div className="h-3 w-4/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+                    <Skeleton className="w-2/5 rounded-lg">
+                        <div className="h-3 w-2/5 rounded-lg bg-default-300" />
+                    </Skeleton>
+                </div>
+            </Card>
             {/* Slider */}
             <Slider
-                aria-label="Volume"
-                value={sliderVal}
-                onChange={handleSliderChange}
+                className="max-w-md"
+                defaultValue={0.4}
+                label="Temperature"
+                maxValue={1}
+                minValue={0}
+                step={0.01}
             />
+            {/* Snippet */}
+            <div className="flex flex-wrap gap-4">
+                <Snippet size="sm">npm install @heroui/react</Snippet>
+                <Snippet size="md">npm install @heroui/react</Snippet>
+                <Snippet size="lg">npm install @heroui/react</Snippet>
+            </div>
+            {/* Spacer */}
+            <div className="flex">
+                <CustomCard />
+                <Spacer x={4} />
+                <CustomCard />
+                <Spacer x={4} />
+                <CustomCard />
+            </div>
+            {/* Spinner */}
+            <div className="flex gap-4">
+                <Spinner color="default" />
+                <Spinner color="primary" />
+                <Spinner color="secondary" />
+                <Spinner color="success" />
+                <Spinner color="warning" />
+                <Spinner color="danger" />
+            </div>
             {/* Switch */}
             <div className="flex items-center gap-3">
-                <Switch isSelected={switchOn} onValueChange={setSwitchOn} />
-                <span>Enable</span>
+                <Switch defaultSelected>Automatic updates</Switch>
             </div>
             {/* Table */}
             <Table aria-label="Example static collection table">
@@ -462,10 +631,65 @@ export default function AllHeroUIComponentsDemo() {
                     </Tab>
                 </Tabs>
             </div>
+            {/* Toast */}
+            <div className="flex flex-wrap gap-2">
+                {["Default", "Primary", "Secondary", "Success", "Warning", "Danger"].map((color) => (
+                    <Button
+                        key={color}
+                        color={color.toLowerCase() as any}
+                        variant={"flat"}
+                        onPress={() =>
+                            addToast({
+                                title: "Toast title",
+                                description: "Toast displayed successfully",
+                                color: color.toLowerCase() as any,
+                            })
+                        }
+                    >
+                        {color}
+                    </Button>
+                ))}
+            </div>
+            {/* Textarea */}
+            <Textarea className="max-w-xs" label="Description" placeholder="Enter your description" />
+            {/* TimeInput */}
+            <div className="flex flex-wrap gap-4">
+                <TimeInput label="Event Time" />
+                <TimeInput defaultValue={new Time(11, 45)} label="Event Time" />
+            </div>
             {/* Tooltip */}
             <Tooltip content="I am a tooltip">
                 <Button>Hover me</Button>
             </Tooltip>
+            {/* User */}
+            <User
+                avatarProps={{
+                    src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                }}
+                description="Product Designer"
+                name="Jane Doe"
+            />
         </div>
     );
+}
+
+function CustomCard() {
+    return (
+        <Card className="w-[200px] space-y-5 p-4" radius="lg">
+            <Skeleton className="rounded-lg">
+                <div className="h-24 rounded-lg bg-default-300" />
+            </Skeleton>
+            <div className="space-y-3">
+                <Skeleton className="w-3/5 rounded-lg">
+                    <div className="h-3 w-3/5 rounded-lg bg-default-200" />
+                </Skeleton>
+                <Skeleton className="w-4/5 rounded-lg">
+                    <div className="h-3 w-4/5 rounded-lg bg-default-200" />
+                </Skeleton>
+                <Skeleton className="w-2/5 rounded-lg">
+                    <div className="h-3 w-2/5 rounded-lg bg-default-300" />
+                </Skeleton>
+            </div>
+        </Card>
+    )
 }
