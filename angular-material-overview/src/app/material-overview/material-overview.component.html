@@ -1,9 +1,9 @@
 
 
-<div ngClass="flex gap-4 flex-col m-auto items-center justify-center">
+<div ngClass="flex gap-4 flex-col m-auto p-36">
   @for (component of examples; track $index) {
-    <div class="border-2 border-black p-4 flex flex-col gap-4">
-      <h2 class="text-xl">{{ component.name }}</h2>
+    <div class=" p-4 flex flex-col gap-4">
+      <h2 class="text-xl font-bold">{{ component.name }}</h2>
       <ng-container *ngComponentOutlet="component" />
     </div>
   }
