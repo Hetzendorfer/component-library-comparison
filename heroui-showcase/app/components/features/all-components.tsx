@@ -12,6 +12,18 @@ import {
     Accordion,
     AccordionItem,
     CardBody,
+    CardFooter,
+    CardHeader,
+    CheckboxGroup,
+    Chip,
+    CircularProgress,
+    Code,
+    DateInput,
+    DatePicker,
+    DateRangePicker,
+    Divider,
+    Image,
+    Link,
     TableBody,
     TableCell,
     TableColumn,
@@ -49,6 +61,9 @@ import { Table } from "@heroui/react";
 import { Tabs, Tab } from "@heroui/react";
 import { Tooltip } from "@heroui/react";
 import { Toaster, toast } from "sonner";
+import AutoCompleteUsage from "./autocomplete";
+import { CalendarDate } from "@internationalized/date";
+import DrawerComp from "./drawer";
 
 export default function AllHeroUIComponentsDemo() {
     const [date, setDate] = useState<Date | undefined>(new Date());
@@ -77,7 +92,6 @@ export default function AllHeroUIComponentsDemo() {
     return (
         <div className="max-w-5xl mx-auto py-10 flex flex-col gap-16">
             <Toaster richColors />
-
             {/* Accordion */}
             <section>
                 <h2 className="font-semibold text-xl mb-4">Accordion</h2>
@@ -90,44 +104,106 @@ export default function AllHeroUIComponentsDemo() {
                     </AccordionItem>
                 </Accordion>
             </section>
-
+            {/* Accordion */}
+            <section>
+                <h2 className="font-semibold text-xl mb-4">Autocomplete</h2>
+                <AutoCompleteUsage />
+            </section>
             {/* Alert */}
             <section>
                 <h2 className="font-semibold text-xl mb-4">Alert</h2>
-                <Alert color="warning" variant="bordered">
-                    Heads up! This is an alert component.
-                </Alert>
+                {[
+                    "default",
+                    "primary",
+                    "secondary",
+                    "success",
+                    "warning",
+                    "danger",
+                ].map((color) => (
+                    <div key={color} className="w-full flex items-center my-3">
+                        <Alert
+                            color={color as any}
+                            title={`This is a ${color} alert`}
+                        />
+                    </div>
+                ))}
             </section>
-
             {/* Avatar + Badge */}
             <section className="flex items-center gap-6">
-                <Avatar src="https://i.pravatar.cc/100" size="lg" />
-                <Badge color="success" variant="solid">
-                    NEW
-                </Badge>
+                <div className="flex gap-4 items-center">
+                    <Avatar
+                        className="w-6 h-6 text-tiny"
+                        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                    />
+                    <Avatar
+                        size="sm"
+                        src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+                    />
+                    <Avatar
+                        size="md"
+                        src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                    />
+                    <Avatar
+                        size="lg"
+                        src="https://i.pravatar.cc/150?u=a04258114e29026302d"
+                    />
+                    <Avatar
+                        className="w-20 h-20 text-large"
+                        src="https://i.pravatar.cc/150?u=a04258114e29026708c"
+                    />
+                </div>
+                <div className="flex gap-3 items-center">
+                    <Badge color="primary" content="5" size="sm">
+                        <Avatar
+                            radius="md"
+                            src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+                        />
+                    </Badge>
+                    <Badge color="primary" content="5" size="md">
+                        <Avatar
+                            radius="md"
+                            src="https://i.pravatar.cc/300?u=a042581f4e29026709d"
+                        />
+                    </Badge>
+                    <Badge color="primary" content="5" size="lg">
+                        <Avatar
+                            radius="md"
+                            src="https://i.pravatar.cc/150?u=a04258114e29026302d"
+                        />
+                    </Badge>
+                </div>
             </section>
-
             {/* Breadcrumbs */}
             <section>
                 <Breadcrumbs>
-                    <BreadcrumbItem href="#">Home</BreadcrumbItem>
-                    <BreadcrumbItem isCurrent>Components</BreadcrumbItem>
+                    <BreadcrumbItem>Home</BreadcrumbItem>
+                    <BreadcrumbItem>Music</BreadcrumbItem>
+                    <BreadcrumbItem>Artist</BreadcrumbItem>
+                    <BreadcrumbItem>Album</BreadcrumbItem>
+                    <BreadcrumbItem>Song</BreadcrumbItem>
                 </Breadcrumbs>
             </section>
-
             {/* Button + toast */}
             <section>
-                <Button onClick={() => toast.success("Hello HeroUI!")}>
-                    Toast
-                </Button>
+                <div className="flex gap-4 items-center">
+                    <Button
+                        radius="full"
+                        onClick={() => toast.success("success")}
+                    >
+                        Full
+                    </Button>
+                    <Button radius="lg">Large</Button>
+                    <Button radius="md">Medium</Button>
+                    <Button radius="sm">Small</Button>
+                    <Button radius="none">None</Button>
+                </div>
             </section>
-
             {/* Calendar */}
             <section>
                 <Popover>
                     <PopoverTrigger>
                         <Button variant="bordered">
-                            {/* {date ? date.toLocaleDateString() : "Pick date"} */}
+                            {date ? date.toLocaleDateString() : "Pick date"}
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent>
@@ -138,40 +214,132 @@ export default function AllHeroUIComponentsDemo() {
                     </PopoverContent>
                 </Popover>
             </section>
-
             {/* Card */}
-            <Card className="max-w-sm">
-                <p className="p-4">Simple card</p>
+            <Card className="max-w-[400px]">
+                <CardHeader className="flex gap-3">
+                    <Image
+                        alt="heroui logo"
+                        height={40}
+                        radius="sm"
+                        src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+                        width={40}
+                    />
+                    <div className="flex flex-col">
+                        <p className="text-md">HeroUI</p>
+                        <p className="text-small text-default-500">
+                            heroui.com
+                        </p>
+                    </div>
+                </CardHeader>
+                <Divider />
+                <CardBody>
+                    <p>
+                        Make beautiful websites regardless of your design
+                        experience.
+                    </p>
+                </CardBody>
+                <Divider />
+                <CardFooter>
+                    <Link
+                        isExternal
+                        showAnchorIcon
+                        href="https://github.com/heroui-inc/heroui"
+                    >
+                        Visit source code on GitHub.
+                    </Link>
+                </CardFooter>
             </Card>
-
             {/* Checkbox */}
             <section className="flex items-center gap-3">
-                <Checkbox isSelected={checked} onValueChange={setChecked} />
-                <span>Check me</span>
+                <CheckboxGroup
+                    defaultValue={["buenos-aires", "london"]}
+                    label="Select cities"
+                >
+                    <Checkbox value="buenos-aires">Buenos Aires</Checkbox>
+                    <Checkbox value="sydney">Sydney</Checkbox>
+                    <Checkbox value="san-francisco">San Francisco</Checkbox>
+                    <Checkbox value="london">London</Checkbox>
+                    <Checkbox value="tokyo">Tokyo</Checkbox>
+                </CheckboxGroup>
+            </section>
+            {/* Chip */}
+            <section className="flex items-center gap-3">
+                <Chip>Chip</Chip>
+            </section>
+            {/* Chip */}
+            <section className="flex items-center gap-3">
+                <CircularProgress aria-label="Loading..." />
+            </section>
+            {/* Code */}
+            <section className="flex items-center gap-3">
+                <div className="flex flex-col gap-4">
+                    <Code size="sm">npm install @heroui/react</Code>
+                    <Code size="md">npm install @heroui/react</Code>
+                    <Code size="lg">npm install @heroui/react</Code>
+                </div>
+            </section>
+            {/* Date Input */}
+            <section className="flex items-center gap-3">
+                <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+                    <DateInput
+                        className="max-w-sm"
+                        label={"Birth date"}
+                        placeholderValue={new CalendarDate(1995, 11, 6)}
+                    />
+                </div>
+            </section>
+            {/* Date Picker */}
+            <section className="flex items-center gap-3">
+                <DatePicker className="max-w-[284px]" label="Birth date" />;
+            </section>
+            {/* Date Range Picker */}
+            <section className="flex items-center gap-3">
+                <DateRangePicker className="max-w-xs" label="Stay duration" />;
+            </section>
+            {/* Divider*/}
+            <section className="flex items-center gap-3">
+                <div className="max-w-md">
+                    <div className="space-y-1">
+                        <h4 className="text-medium font-medium">
+                            HeroUI Components
+                        </h4>
+                        <p className="text-small text-default-400">
+                            Beautiful, fast and modern React UI library.
+                        </p>
+                    </div>
+                    <Divider className="my-4" />
+                    <div className="flex h-5 items-center space-x-4 text-small">
+                        <div>Blog</div>
+                        <Divider orientation="vertical" />
+                        <div>Docs</div>
+                        <Divider orientation="vertical" />
+                        <div>Source</div>
+                    </div>
+                </div>
             </section>
 
             {/* Drawer */}
-            <Drawer>
-                <Button variant="bordered">Open Drawer</Button>
-                <DrawerContent>
-                    <DrawerHeader>
-                        <h2>Drawer Title</h2>
-                    </DrawerHeader>
-                    <div className="p-4">Drawer body…</div>
-                </DrawerContent>
-            </Drawer>
-
+            <DrawerComp />
             {/* Dropdown */}
-            <Dropdown>
-                <DropdownTrigger>
-                    <Button variant="bordered">Open dropdown</Button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Actions">
-                    <DropdownItem key="edit">Edit</DropdownItem>
-                    <DropdownItem key="delete">Delete</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-
+            <section>
+                <Dropdown>
+                    <DropdownTrigger>
+                        <Button variant="bordered">Open Menu</Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                        <DropdownItem key="new">New file</DropdownItem>
+                        <DropdownItem key="copy">Copy link</DropdownItem>
+                        <DropdownItem key="edit">Edit file</DropdownItem>
+                        <DropdownItem
+                            key="delete"
+                            className="text-danger"
+                            color="danger"
+                        >
+                            Delete file
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </section>
             {/* Form */}
             <Form className="space-y-4 max-w-sm">
                 <label>Email</label>
@@ -180,7 +348,6 @@ export default function AllHeroUIComponentsDemo() {
                 <Textarea placeholder="Your message…" />
                 <Button type="submit">Submit</Button>
             </Form>
-
             {/* Modal */}
             <Modal>
                 <Button variant="bordered">Open modal</Button>
@@ -191,26 +358,21 @@ export default function AllHeroUIComponentsDemo() {
                     <div className="p-4">Modal content…</div>
                 </ModalContent>
             </Modal>
-
             {/* Pagination */}
             <Pagination total={10} initialPage={2} />
-
             {/* Progress */}
             <Progress aria-label="loading…" value={60} className="max-w-sm" />
-
             {/* RadioGroup */}
             <RadioGroup defaultValue="a" orientation="horizontal">
                 <Radio value="a">A</Radio>
                 <Radio value="b">B</Radio>
             </RadioGroup>
-
             {/* ScrollShadow */}
             <ScrollShadow className="h-32 max-w-sm border rounded-lg p-3 space-y-1">
                 {Array.from({ length: 20 }).map((_, i) => (
                     <p key={i}>Item {i + 1}</p>
                 ))}
             </ScrollShadow>
-
             {/* Select */}
             <Select
                 label="Select fruit"
@@ -220,23 +382,19 @@ export default function AllHeroUIComponentsDemo() {
                 <SelectItem key="apple">Apple</SelectItem>
                 <SelectItem key="banana">Banana</SelectItem>
             </Select>
-
             {/* Skeleton */}
             <Skeleton className="w-48 h-8 rounded-lg" />
-
             {/* Slider */}
             <Slider
                 aria-label="Volume"
                 value={sliderVal}
                 onChange={handleSliderChange}
             />
-
             {/* Switch */}
             <div className="flex items-center gap-3">
                 <Switch isSelected={switchOn} onValueChange={setSwitchOn} />
                 <span>Enable</span>
             </div>
-
             {/* Table */}
             <Table aria-label="Example static collection table">
                 <TableHeader>
@@ -267,7 +425,6 @@ export default function AllHeroUIComponentsDemo() {
                     </TableRow>
                 </TableBody>
             </Table>
-
             {/* Tabs */}
             <div className="flex w-full flex-col">
                 <Tabs aria-label="Options">
@@ -305,7 +462,6 @@ export default function AllHeroUIComponentsDemo() {
                     </Tab>
                 </Tabs>
             </div>
-
             {/* Tooltip */}
             <Tooltip content="I am a tooltip">
                 <Button>Hover me</Button>
