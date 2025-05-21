@@ -28,12 +28,12 @@ export interface DialogData {
  * @title Dialog Overview
  */
 @Component({
-  selector: 'dialog-overview-example',
-  templateUrl: 'dialog-overview-example.html',
+  selector: 'dialog-overview',
+  templateUrl: 'dialog.component.html',
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogOverviewExample {
+export class DialogComponent {
   readonly animal = signal('');
   readonly name = model('');
   readonly dialog = inject(MatDialog);

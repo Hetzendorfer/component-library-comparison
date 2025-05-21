@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 /**
  * @title Basic buttons
  */
 @Component({
-  selector: 'button-overview-example',
-  templateUrl: 'button-overview-example.html',
-  styleUrl: 'button-overview-example.css',
+  selector: 'button-overview',
+  templateUrl: 'button.component.html',
+  styleUrl: 'button.component.scss',
   imports: [MatButtonModule, MatDividerModule, MatIconModule],
 })
-export class ButtonOverviewExample {}
+export class ButtonComponent {}

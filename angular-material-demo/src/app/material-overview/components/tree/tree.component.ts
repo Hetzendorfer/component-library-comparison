@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule } from '@angular/material/tree';
 
 /**
  * Food data with nested structure.
@@ -16,13 +16,13 @@ interface FoodNode {
  * @title Tree with nested nodes (childrenAccessor)
  */
 @Component({
-  selector: 'tree-nested-child-accessor-overview-example',
-  templateUrl: 'tree-nested-child-accessor-overview-example.html',
-  styleUrl: 'tree-nested-child-accessor-overview-example.css',
+  selector: 'tree-overview',
+  templateUrl: 'tree.component.html',
+  styleUrl: 'tree.component.scss',
   imports: [MatTreeModule, MatButtonModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreeNestedChildAccessorOverviewExample {
+export class TreeComponent {
   childrenAccessor = (node: FoodNode) => node.children ?? [];
 
   dataSource = EXAMPLE_DATA;

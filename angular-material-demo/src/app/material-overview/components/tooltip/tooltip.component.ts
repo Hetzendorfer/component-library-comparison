@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 /**
  * @title Basic tooltip
  */
 @Component({
-  selector: 'tooltip-overview-example',
-  templateUrl: 'tooltip-overview-example.html',
+  selector: 'tooltip-overview',
+  templateUrl: 'tooltip.component.html',
   imports: [MatButtonModule, MatTooltipModule],
 })
-export class TooltipOverviewExample {}
+export class TooltipComponent {}

@@ -5,11 +5,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
  * @title Basic expansion panel
  */
 @Component({
-  selector: 'expansion-overview-example',
-  templateUrl: 'expansion-overview-example.html',
+  selector: 'expansion-panel-overview',
+  templateUrl: 'expansion-panel.component.html',
   imports: [MatExpansionModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExpansionOverviewExample {
+export class ExpansionPanelComponent {
   readonly panelOpenState = signal(false);
 }

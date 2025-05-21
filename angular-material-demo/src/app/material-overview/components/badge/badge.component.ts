@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 /**
  * @title Badge overview
  */
 @Component({
-  selector: 'badge-overview-example',
-  templateUrl: 'badge-overview-example.html',
-  styleUrl: 'badge-overview-example.css',
+  selector: 'badge-overview',
+  templateUrl: 'badge.component.html',
+  styleUrl: 'badge.component.scss',
   imports: [MatBadgeModule, MatButtonModule, MatIconModule],
 })
-export class BadgeOverviewExample {
+export class BadgeComponent {
   hidden = false;
 
   toggleBadgeVisibility() {

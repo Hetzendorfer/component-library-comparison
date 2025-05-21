@@ -6,12 +6,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
  * @title Button toggle selection mode
  */
 @Component({
-  selector: 'button-toggle-mode-example',
-  templateUrl: 'button-toggle-mode-example.html',
+  selector: 'button-toggle-overview',
+  templateUrl: 'button-toggle.component.html',
   imports: [MatButtonToggleModule, MatCheckboxModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonToggleModeExample {
+export class ButtonToggleComponent {
   hideSingleSelectionIndicator = signal(false);
   hideMultipleSelectionIndicator = signal(false);
 

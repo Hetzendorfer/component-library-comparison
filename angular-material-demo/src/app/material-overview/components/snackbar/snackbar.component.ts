@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * @title Basic snack-bar
  */
 @Component({
-  selector: 'snack-bar-overview-example',
-  templateUrl: 'snack-bar-overview-example.html',
-  styleUrl: 'snack-bar-overview-example.css',
+  selector: 'snack-bar-overview',
+  templateUrl: 'snackbar.component.html',
+  styleUrl: 'snackbar.component.scss',
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule],
 })
-export class SnackBarOverviewExample {
+export class SnackbarComponent {
   private _snackBar = inject(MatSnackBar);
 
   openSnackBar(message: string, action: string) {

@@ -1,22 +1,22 @@
 import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
-  Validators,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
 
 /**
  * @title Stepper vertical
  */
 @Component({
-  selector: 'stepper-vertical-example',
-  templateUrl: 'stepper-vertical-example.html',
-  styleUrl: 'stepper-vertical-example.css',
+  selector: 'stepper-overview',
+  templateUrl: 'stepper.component.html',
+  styleUrl: 'stepper.component.scss',
   imports: [
     MatButtonModule,
     MatStepperModule,
@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
   ],
 })
-export class StepperVerticalExample {
+export class StepperComponent {
   private _formBuilder = inject(FormBuilder);
 
   firstFormGroup = this._formBuilder.group({

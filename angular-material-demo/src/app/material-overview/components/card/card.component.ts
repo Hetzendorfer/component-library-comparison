@@ -5,9 +5,9 @@ import { MatCardModule } from '@angular/material/card';
  * @title Basic cards
  */
 @Component({
-  selector: 'card-overview-example',
-  templateUrl: 'card-overview-example.html',
+  selector: 'card-overview',
+  templateUrl: 'card.component.html',
   imports: [MatCardModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardOverviewExample {}
+export class CardComponent {}

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 /**
  * @title Inputs in a form
  */
 @Component({
-  selector: 'input-form-example',
-  templateUrl: 'input-form-example.html',
-  styleUrl: 'input-form-example.css',
+  selector: 'input-overview',
+  templateUrl: 'input.component.html',
+  styleUrl: 'input.component.scss',
   imports: [FormsModule, MatFormFieldModule, MatInputModule],
 })
-export class InputFormExample {}
+export class InputComponent {}

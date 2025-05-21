@@ -1,22 +1,45 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Number</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      @for (option of filteredOptions | async; track option) {
-        <mat-option [value]="option">{{option}}</mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
 
-<div>
-  @for (component of examples; track component) {
-    <ng-template  [ngComponentOutlet]="component"/>
+
+<div ngClass="flex gap-4 flex-col m-auto items-center justify-center">
+  @for (component of examples; track $index) {
+    <div class="border-2 border-black p-4 flex flex-col gap-4">
+      <h2 class="text-xl">{{ component.name }}</h2>
+      <ng-container *ngComponentOutlet="component" />
+    </div>
   }
+
+  <!-- <badge-overview />
+  <bottom-sheet-overview />
+  <button-overview />
+  <button-toggle-overview />
+  <checkbox-overview />
+  <chips-overview/>
+  <datepicker-overview />
+  <dialog-overview />
+  <divider-overview />
+  <expansion-panel-overview />
+  <form-field-overview />
+  <grid-list-overview />
+  <icon-overview />
+  <input-overview />
+  <list-overview />
+  <menu-overview/>
+  <paginator-overview />
+  <progress-bar-overview />
+  <progress-spinner-overview />
+  <radio-button-overview />
+  <ripples-overview />
+  <select-overview/>
+  <sidenav-overview />
+  <slide-toggle-overview />
+  <slider-overview />
+  <snack-bar-overview />
+  <sort-header-overview />
+  <stepper-overview />
+  <table-overview />
+  <timepicker-overview />
+  <toolbar-overview />
+  <tooltip-overview />
+  <tree-overview />
+  <card-overview/> -->
 </div>

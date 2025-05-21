@@ -17,13 +17,13 @@ export interface Task {
  * @title Basic checkboxes
  */
 @Component({
-  selector: 'checkbox-overview-example',
-  templateUrl: 'checkbox-overview-example.html',
-  styleUrl: 'checkbox-overview-example.css',
+  selector: 'checkbox-overview',
+  templateUrl: 'checkbox.component.html',
+  styleUrl: 'checkbox.component.scss',
   imports: [MatCheckboxModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxOverviewExample {
+export class CheckboxComponent {
   readonly task = signal<Task>({
     name: 'Parent task',
     completed: false,

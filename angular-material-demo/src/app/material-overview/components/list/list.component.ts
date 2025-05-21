@@ -5,8 +5,8 @@ import { MatListModule } from '@angular/material/list';
  * @title Basic list
  */
 @Component({
-  selector: 'list-overview-example',
-  templateUrl: 'list-overview-example.html',
+  selector: 'list-overview',
+  templateUrl: 'list.component.html',
   imports: [MatListModule],
 })
-export class ListOverviewExample {}
+export class ListComponent {}

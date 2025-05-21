@@ -15,13 +15,13 @@ export interface Vegetable {
  * @title Chips Drag and Drop
  */
 @Component({
-  selector: 'chips-drag-drop-example',
-  templateUrl: 'chips-drag-drop-example.html',
-  styleUrl: 'chips-drag-drop-example.css',
+  selector: 'chips-overview',
+  templateUrl: 'chips.component.html',
+  styleUrl: 'chips.component.scss',
   imports: [MatChipsModule, CdkDropList, CdkDrag],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChipsDragDropExample {
+export class ChipsComponent {
   readonly vegetables = signal<Vegetable[]>([
     { name: 'apple' },
     { name: 'banana' },

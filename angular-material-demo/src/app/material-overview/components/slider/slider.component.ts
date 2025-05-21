@@ -5,9 +5,9 @@ import { MatSliderModule } from '@angular/material/slider';
  * @title Basic slider
  */
 @Component({
-  selector: 'slider-overview-example',
-  templateUrl: 'slider-overview-example.html',
-  styleUrl: 'slider-overview-example.css',
+  selector: 'slider-overview',
+  templateUrl: 'slider.component.html',
+  styleUrl: 'slider.component.scss',
   imports: [MatSliderModule],
 })
-export class SliderOverviewExample {}
+export class SliderComponent {}

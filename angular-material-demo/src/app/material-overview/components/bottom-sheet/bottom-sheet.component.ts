@@ -4,18 +4,18 @@ import {
   MatBottomSheetModule,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
-import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 /**
  * @title Bottom Sheet Overview
  */
 @Component({
-  selector: 'bottom-sheet-overview-example',
-  templateUrl: 'bottom-sheet-overview-example.html',
+  selector: 'bottom-sheet-overview',
+  templateUrl: 'bottom-sheet.component.html',
   imports: [MatButtonModule, MatBottomSheetModule],
 })
-export class BottomSheetOverviewExample {
+export class BottomSheetComponent {
   private _bottomSheet = inject(MatBottomSheet);
 
   openBottomSheet(): void {

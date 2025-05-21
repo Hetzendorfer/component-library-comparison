@@ -5,9 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
  * @title Basic icons
  */
 @Component({
-  selector: 'icon-overview-example',
-  templateUrl: 'icon-overview-example.html',
+  selector: 'icon-overview',
+  templateUrl: 'icon.component.html',
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconOverviewExample {}
+export class IconComponent {}

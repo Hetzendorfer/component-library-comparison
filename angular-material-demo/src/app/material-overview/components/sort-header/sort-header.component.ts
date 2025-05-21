@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Sort, MatSortModule } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 
 export interface Dessert {
   calories: number;
@@ -13,12 +13,12 @@ export interface Dessert {
  * @title Sorting overview
  */
 @Component({
-  selector: 'sort-overview-example',
-  templateUrl: 'sort-overview-example.html',
-  styleUrl: 'sort-overview-example.css',
+  selector: 'sort-header-overview',
+  templateUrl: 'sort-header.component.html',
+  styleUrl: 'sort-header.component.scss',
   imports: [MatSortModule],
 })
-export class SortOverviewExample {
+export class SortHeaderComponent {
   desserts: Dessert[] = [
     { name: 'Frozen yogurt', calories: 159, fat: 6, carbs: 24, protein: 4 },
     {

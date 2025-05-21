@@ -6,9 +6,9 @@ import { MatListModule } from '@angular/material/list';
  * @title Basic divider
  */
 @Component({
-  selector: 'divider-overview-example',
-  templateUrl: 'divider-overview-example.html',
+  selector: 'divider-overview',
+  templateUrl: 'divider.component.html',
   imports: [MatListModule, MatDividerModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DividerOverviewExample {}
+export class DividerComponent {}

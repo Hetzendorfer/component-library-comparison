@@ -5,8 +5,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
  * @title Indeterminate progress-bar
  */
 @Component({
-  selector: 'progress-bar-indeterminate-example',
-  templateUrl: 'progress-bar-indeterminate-example.html',
+  selector: 'progress-bar-overview',
+  templateUrl: 'progress-bar.component.html',
   imports: [MatProgressBarModule],
 })
-export class ProgressBarIndeterminateExample {}
+export class ProgressBarComponent {}

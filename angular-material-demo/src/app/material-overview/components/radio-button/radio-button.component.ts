@@ -5,9 +5,9 @@ import { MatRadioModule } from '@angular/material/radio';
  * @title Basic radios
  */
 @Component({
-  selector: 'radio-overview-example',
-  templateUrl: 'radio-overview-example.html',
-  styleUrl: 'radio-overview-example.css',
+  selector: 'radio-button-overview',
+  templateUrl: 'radio-button.component.html',
+  styleUrl: 'radio-button.component.scss',
   imports: [MatRadioModule],
 })
-export class RadioOverviewExample {}
+export class RadioButtonComponent {}
