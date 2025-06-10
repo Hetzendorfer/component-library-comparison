@@ -60,7 +60,7 @@ jobs:
           mkdir -p dist/angular-material-overview
           cp -r heroui-showcase/build/client/* dist/heroui-showcase/
           cp -r shadcn-showcase/build/client/* dist/shadcn-showcase/
-          cp -r angular-material-overview/dist/angular-material-demo/ dist/angular-material-overview/
+          cp -r angular-material-overview/dist/angular-material-demo/browser/* dist/angular-material-overview/
 
       # Schritt 6: Auf GitHub Pages deployen
       - name: Setup Pages
