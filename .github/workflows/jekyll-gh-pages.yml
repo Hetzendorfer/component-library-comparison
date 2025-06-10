@@ -52,6 +52,9 @@ jobs:
       - name: Copy Build Outputs
         run: |
           mkdir -p dist
+          mkdir -p dist/heroui-showcase
+          mkdir -p dist/shadcn-showcase
+          mkdir -p dist/angular-material-overview
           cp -r heroui-showcase/build/client/* dist/heroui-showcase/
           cp -r shadcn-showcase/build/client/* dist/shadcn-showcase/
           cp -r angular-material-overview/dist/angular-material-overview/* dist/angular-material-overview/
