@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger bei Push auf den main-Branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -14,14 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Schritt 2: Node.js einrichten
+      # Schritt 2: Node.js einrichten (ohne Cache auf Root-Ebene)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Wähle die Node-Version, die für deine Projekte passt
-          cache: 'npm'
+          node-version: '20'  # Passe die Version an deine Projekte an
 
-      # Schritt 3: Abhängigkeiten für alle Projekte installieren
+      # Schritt 3: Abhängigkeiten für jedes Projekt installieren
       - name: Install Dependencies for heroui-showcase
         run: |
           cd heroui-showcase
@@ -47,7 +46,7 @@ jobs:
       - name: Build angular-material-overview
         run: |
           cd angular-material-overview
-          npm run build -- --base-href=/angular-material-overview/
+          npm run build -- --base-href=/component-library-comparison/angular-material-overview/
 
       # Schritt 5: Build-Output in ein gemeinsames Verzeichnis kopieren
       - name: Copy Build Outputs
