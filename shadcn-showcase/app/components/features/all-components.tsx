@@ -192,6 +192,7 @@ import {
 } from "../ui/tooltip";
 import { Toaster, toast } from "sonner";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 
 // ─── Component ──────────────────────────────────────────────────────────────
 export default function AllShadcnComponentsDemo() {
@@ -212,6 +213,7 @@ export default function AllShadcnComponentsDemo() {
             <TooltipProvider delayDuration={0}>
                 {/* Global toast outlet */}
                 <Toaster position="bottom-right" richColors />
+                <Link to={{ pathname: "/showcase" }}>Showcase</Link>
 
                 <div
                     style={{

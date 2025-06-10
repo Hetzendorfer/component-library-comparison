@@ -76,9 +76,15 @@ import { Table } from "@heroui/react";
 import { Tabs, Tab } from "@heroui/react";
 import { Tooltip } from "@heroui/react";
 import AutoCompleteUsage from "./autocomplete";
-import { CalendarDate, getLocalTimeZone, Time, today } from "@internationalized/date";
+import {
+    CalendarDate,
+    getLocalTimeZone,
+    Time,
+    today,
+} from "@internationalized/date";
 import DrawerComp from "./drawer";
 import ModalImpl from "./modal";
+import { Link as LinkRouter } from "react-router";
 
 export default function AllHeroUIComponentsDemo() {
     const [date, setDate] = useState<Date | undefined>(new Date());
@@ -118,7 +124,10 @@ export default function AllHeroUIComponentsDemo() {
                     </svg>
                     <p className="font-bold text-inherit">ACME</p>
                 </NavbarBrand>
-                <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                <NavbarContent
+                    className="hidden sm:flex gap-4"
+                    justify="center"
+                >
                     <NavbarItem>
                         <Link color="foreground" href="#">
                             Features
@@ -140,7 +149,12 @@ export default function AllHeroUIComponentsDemo() {
                         <Link href="#">Login</Link>
                     </NavbarItem>
                     <NavbarItem>
-                        <Button as={Link} color="primary" href="#" variant="flat">
+                        <Button
+                            as={Link}
+                            color="primary"
+                            href="#"
+                            variant="flat"
+                        >
                             Sign Up
                         </Button>
                     </NavbarItem>
@@ -148,6 +162,7 @@ export default function AllHeroUIComponentsDemo() {
             </Navbar>
             <ToastProvider />
             {/* Accordion */}
+            <LinkRouter to={{ pathname: "/showcase" }}>Showcase</LinkRouter>
             <section>
                 <h2 className="font-semibold text-xl mb-4">Accordion</h2>
                 <Accordion defaultExpandedKeys={["1"]} className="max-w-md">
@@ -241,11 +256,7 @@ export default function AllHeroUIComponentsDemo() {
             {/* Button + toast */}
             <section>
                 <div className="flex gap-4 items-center">
-                    <Button
-                        radius="full"
-                    >
-                        Full
-                    </Button>
+                    <Button radius="full">Full</Button>
                     <Button radius="lg">Large</Button>
                     <Button radius="md">Medium</Button>
                     <Button radius="sm">Small</Button>
@@ -401,8 +412,12 @@ export default function AllHeroUIComponentsDemo() {
                 <label>Message</label>
                 <Textarea placeholder="Your message…" />
                 <div className="flex gap-2">
-                    <Button type="submit" color="primary">Submit</Button>
-                    <Button type="reset" variant="flat">Reset</Button>
+                    <Button type="submit" color="primary">
+                        Submit
+                    </Button>
+                    <Button type="reset" variant="flat">
+                        Reset
+                    </Button>
                 </div>
             </Form>
             {/* Image */}
@@ -446,11 +461,18 @@ export default function AllHeroUIComponentsDemo() {
             {/* Listbox */}
             <section>
                 <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-                    <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
+                    <Listbox
+                        aria-label="Actions"
+                        onAction={(key) => alert(key)}
+                    >
                         <ListboxItem key="new">New file</ListboxItem>
                         <ListboxItem key="copy">Copy link</ListboxItem>
                         <ListboxItem key="edit">Edit file</ListboxItem>
-                        <ListboxItem key="delete" className="text-danger" color="danger">
+                        <ListboxItem
+                            key="delete"
+                            className="text-danger"
+                            color="danger"
+                        >
                             Delete file
                         </ListboxItem>
                     </Listbox>
@@ -460,7 +482,10 @@ export default function AllHeroUIComponentsDemo() {
             <ModalImpl />
             {/* NumberInput */}
             <section>
-                <NumberInput className="max-w-xs" placeholder="Enter the amount" />
+                <NumberInput
+                    className="max-w-xs"
+                    placeholder="Enter the amount"
+                />
             </section>
             {/* Pagination */}
             <Pagination total={10} initialPage={2} />
@@ -472,8 +497,12 @@ export default function AllHeroUIComponentsDemo() {
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="px-1 py-2">
-                            <div className="text-small font-bold">Popover Content</div>
-                            <div className="text-tiny">This is the popover content</div>
+                            <div className="text-small font-bold">
+                                Popover Content
+                            </div>
+                            <div className="text-tiny">
+                                This is the popover content
+                            </div>
                         </div>
                     </PopoverContent>
                 </Popover>
@@ -633,7 +662,14 @@ export default function AllHeroUIComponentsDemo() {
             </div>
             {/* Toast */}
             <div className="flex flex-wrap gap-2">
-                {["Default", "Primary", "Secondary", "Success", "Warning", "Danger"].map((color) => (
+                {[
+                    "Default",
+                    "Primary",
+                    "Secondary",
+                    "Success",
+                    "Warning",
+                    "Danger",
+                ].map((color) => (
                     <Button
                         key={color}
                         color={color.toLowerCase() as any}
@@ -651,7 +687,11 @@ export default function AllHeroUIComponentsDemo() {
                 ))}
             </div>
             {/* Textarea */}
-            <Textarea className="max-w-xs" label="Description" placeholder="Enter your description" />
+            <Textarea
+                className="max-w-xs"
+                label="Description"
+                placeholder="Enter your description"
+            />
             {/* TimeInput */}
             <div className="flex flex-wrap gap-4">
                 <TimeInput label="Event Time" />
@@ -691,5 +731,5 @@ function CustomCard() {
                 </Skeleton>
             </div>
         </Card>
-    )
+    );
 }
