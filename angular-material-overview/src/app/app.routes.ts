@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MaterialOverviewComponent } from './material-overview/material-overview.component';
+import { ShowcaseComponent } from './showcase/showcase.component';
 
 export const routes: Routes = [
     {
@@ -8,6 +9,6 @@ export const routes: Routes = [
     },
     {
         "path": "showcase",
-        loadComponent: () => import("./showcase/showcase.component").then(m => m.ShowcaseComponent)
+        component: ShowcaseComponent
     }
 ];

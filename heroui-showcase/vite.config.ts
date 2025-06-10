@@ -5,5 +5,5 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
-  base: "/component-library-comparison/heroui-showcase"
+  base: "/component-library-comparison/heroui-showcase/"
 });
