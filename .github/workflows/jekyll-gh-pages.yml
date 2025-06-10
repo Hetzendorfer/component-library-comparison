@@ -52,8 +52,8 @@ jobs:
       - name: Copy Build Outputs
         run: |
           mkdir -p dist
-          cp -r heroui-showcase/dist/* dist/heroui-showcase/
-          cp -r shadcn-showcase/dist/* dist/shadcn-showcase/
+          cp -r heroui-showcase/build/client/* dist/heroui-showcase/
+          cp -r shadcn-showcase/build/client/* dist/shadcn-showcase/
           cp -r angular-material-overview/dist/angular-material-overview/* dist/angular-material-overview/
 
       # Schritt 6: Auf GitHub Pages deployen
